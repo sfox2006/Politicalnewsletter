@@ -265,7 +265,7 @@ def load_skill() -> str:
     parts = []
     for path in sorted(SKILL_DIR.rglob("*.md")):
         rel = path.relative_to(SKILL_DIR)
-        parts.append(f"=== {rel} ===\n\n{path.read_text()}")
+        parts.append(f"=== {rel} ===\n\n{path.read_text(encoding='utf-8')}")
     return "\n\n".join(parts)
 
 

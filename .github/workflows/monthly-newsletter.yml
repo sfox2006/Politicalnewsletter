@@ -29,6 +29,7 @@ jobs:
           GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
           SAM_EMAIL: ${{ secrets.SAM_EMAIL }}
           CLAUDE_MODEL: claude-opus-4-5-20250929
+          PYTHONUTF8: "1"
         run: python agent.py
 
       - name: Upload generated spreadsheet as artifact
