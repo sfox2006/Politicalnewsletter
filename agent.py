@@ -36,7 +36,7 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 # --- Configuration --------------------------------------------------------
 
 SAM_EMAIL = os.environ.get("SAM_EMAIL", "samfoxanu@gmail.com")
-MODEL = os.environ.get("CLAUDE_MODEL", "claude-opus-4-5-20250929")
+MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-20250514")
 SKILL_DIR = Path(__file__).parent / "skill"
 OUTPUT_DIR = Path(__file__).parent / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)

@@ -28,7 +28,7 @@ jobs:
           GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
           GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
           SAM_EMAIL: ${{ secrets.SAM_EMAIL }}
-          CLAUDE_MODEL: claude-opus-4-5-20250929
+          CLAUDE_MODEL: claude-sonnet-4-20250514
           PYTHONUTF8: "1"
         run: python agent.py
 

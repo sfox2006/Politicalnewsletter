@@ -79,7 +79,7 @@ The Gmail draft will appear in your Drafts folder; the spreadsheet will be in `o
 
 ## Cost
 
-Each run uses Claude Opus to fetch ~25–50 URLs and emit a structured payload. Expect roughly **$1–$3 in API costs per monthly run**. GitHub Actions free tier easily covers a monthly job.
+Each run uses Claude Sonnet to fetch ~25–50 URLs and emit a structured payload. Expect roughly **$1–$3 in API costs per monthly run**. GitHub Actions free tier easily covers a monthly job.
 
 ## When to update the skill
 
