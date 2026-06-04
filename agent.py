@@ -118,6 +118,7 @@ def send_notification_email(draft_id: str, n_programs: int):
         f"Your monthly Opportunities Newsletter draft is ready for review.\n\n"
         f"Programs included: {n_programs}\n"
         f"Date generated: {TODAY}\n\n"
+        f"Reminder: update Google Contacts label for all new signups.\n\n"
         f"Open Gmail Drafts to review, edit, and send when ready.\n"
         f"https://mail.google.com/mail/u/0/#drafts/{draft_id}\n"
     )
