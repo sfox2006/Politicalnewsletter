@@ -1,0 +1,40 @@
+name: Monthly More Opportunities Newsletter Draft
+
+on:
+  schedule:
+    # 09:00 UTC on the 1st of every month
+    # = 19:00 Sydney AEST in winter / 20:00 in summer
+    - cron: "0 9 1 * *"
+  workflow_dispatch:  # lets Sam trigger manually from the Actions tab
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+          SAM_EMAIL: ${{ secrets.SAM_EMAIL }}
+          CLAUDE_MODEL: claude-opus-4-5-20250929
+        run: python agent.py
+
+      - name: Upload generated spreadsheet as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newsletter-spreadsheet
+          path: output/*.xlsx
+          if-no-files-found: ignore
