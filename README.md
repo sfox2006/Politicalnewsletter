@@ -1,12 +1,12 @@
-# More Opportunities! Bot
+# Opportunities Newsletter Bot
 
-A monthly automation that drafts Sam's "More Opportunities!" student newsletter, saves it as a Gmail draft, and emails Sam to review. **Nothing is ever sent without Sam's review.**
+A monthly automation that drafts Sam's "Opportunities Newsletter" student newsletter, saves it as a Gmail draft, and emails Sam to review. **Nothing is ever sent without Sam's review.**
 
 ## What it does
 
 On the 1st of every month (or whenever Sam triggers it manually), a GitHub Actions job runs `agent.py`. The script:
 
-1. Asks Claude (acting as an agent) to read the skill files in `skill/`, search Sam's Gmail for recent "More Opportunities!" newsletters, and verify every Tier-1/Tier-2 program in the skill's organisation list by fetching its application page.
+1. Asks Claude (acting as an agent) to read the skill files in `skill/`, search Sam's Gmail for recent "Opportunities Newsletter" editions, and verify every Tier-1/Tier-2 program in the skill's organisation list by fetching its application page.
 2. Returns a structured payload describing only the **currently-open** programs.
 3. Builds the email body (following `skill/references/template.md`) and a filterable `.xlsx` spreadsheet (following `skill/references/spreadsheet-schema.md`).
 4. Saves the email as a **Gmail draft** in Sam's account with the spreadsheet attached.
@@ -39,7 +39,7 @@ Locally (on your laptop, not in CI), do this once:
 
 ```bash
 git clone <this repo>
-cd more-opportunities-bot
+cd opportunities-newsletter-bot
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
@@ -63,7 +63,7 @@ In the GitHub repo: **Settings → Secrets and variables → Actions → New rep
 
 ### 5. Push and enable
 
-Push the repo to GitHub. The workflow runs automatically on the 1st of every month. You can also trigger it manually from the **Actions** tab → **Monthly More Opportunities Newsletter Draft** → **Run workflow**.
+Push the repo to GitHub. The workflow runs automatically on the 1st of every month. You can also trigger it manually from the **Actions** tab → **Monthly Opportunities Newsletter Draft** → **Run workflow**.
 
 ## Running locally
 

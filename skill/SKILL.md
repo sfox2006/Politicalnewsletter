@@ -1,11 +1,11 @@
 ---
-name: more-opportunities-newsletter
-description: Drafts Sam Fox's "More Opportunities!" student newsletter — a roundup of currently-open internships, fellowships, conferences, student programs, online courses, and essay competitions at classical liberal, libertarian, conservative, centre-right, and free-market think tanks globally. Each newsletter includes a filterable spreadsheet attachment. Trigger whenever Sam asks to write, draft, build, update, or refresh a "More Opportunities" newsletter; asks for an opportunities roundup or student program list; asks what's open for free-market students; or asks to check which programs from a previous newsletter are still open. Use this skill any time Sam mentions the phrase "More Opportunities" or references the regular student-facing roundup, even casually.
+name: opportunities-newsletter
+description: Drafts Sam Fox's "Opportunities Newsletter" student newsletter — a roundup of currently-open internships, fellowships, conferences, student programs, online courses, and essay competitions at classical liberal, libertarian, conservative, centre-right, and free-market think tanks globally. Each newsletter includes a filterable spreadsheet attachment. Trigger whenever Sam asks to write, draft, build, update, or refresh an "Opportunities Newsletter" edition; asks for an opportunities roundup or student program list; asks what's open for free-market students; or asks to check which programs from a previous newsletter are still open. Use this skill any time Sam mentions the phrase "Opportunities Newsletter" or references the regular student-facing roundup, even casually.
 ---
 
-# More Opportunities! Newsletter
+# Opportunities Newsletter
 
-A skill for drafting Sam Fox's recurring "More Opportunities!" student newsletter and its accompanying filterable spreadsheet. The newsletter goes to students in the classical liberal, libertarian, conservative, and centre-right space and lists currently-open programs at aligned think tanks and educational foundations.
+A skill for drafting Sam Fox's recurring "Opportunities Newsletter" student newsletter and its accompanying filterable spreadsheet. The newsletter goes to students in the classical liberal, libertarian, conservative, and centre-right space and lists currently-open programs at aligned think tanks and educational foundations.
 
 ## Critical principles (do not skip)
 
@@ -22,7 +22,7 @@ A skill for drafting Sam Fox's recurring "More Opportunities!" student newslette
 
 ### Step 1: Find what's been covered before
 
-Use the Gmail search tool with: `subject:"More Opportunities"` (no exclamation mark). Pull the most recent thread or two with `messageFormat: FULL_CONTENT` to see which programs were featured. Programs that were featured in the last 1–2 newsletters can be re-featured if they're still open and deadlines are imminent, but Sam generally prefers fresh content.
+Use the Gmail search tool with: `subject:"Opportunities Newsletter"` (no exclamation mark). Pull the most recent thread or two with `messageFormat: FULL_CONTENT` to see which programs were featured. Programs that were featured in the last 1–2 newsletters can be re-featured if they're still open and deadlines are imminent, but Sam generally prefers fresh content.
 
 ### Step 2: Build the candidate list
 
@@ -50,15 +50,15 @@ Cross-check each program one more time. Read `references/known-traps.md` before 
 
 ### Step 4: Draft the newsletter email
 
-Read `references/template.md` for the exact email format. Subject is `More Opportunities!`. The country order is fixed: 🇦🇺 Australia → 🇳🇿 New Zealand → 🇬🇧 United Kingdom → 🇪🇺 Europe (if any) → 🇺🇸 United States → 🇨🇦 Canada → 🌏 Asia / Latin America / MENA / Africa (only if relevant programs are open) → 🌐 Online courses. Skip any country with no currently-open programs.
+Read `references/template.md` for the exact email format. Subject is `Opportunities Newsletter`. The country order is fixed: 🇦🇺 Australia → 🇳🇿 New Zealand → 🇬🇧 United Kingdom → 🇪🇺 Europe (if any) → 🇺🇸 United States → 🇨🇦 Canada → 🌏 Asia / Latin America / MENA / Africa (only if relevant programs are open) → 🌐 Online courses. Skip any country with no currently-open programs.
 
 ### Step 5: Generate the spreadsheet
 
-Read `references/spreadsheet-schema.md` for the exact column structure and allowed values. Generate the spreadsheet using the xlsx skill — see `/mnt/skills/public/xlsx/SKILL.md` for skill mechanics. Save the file as `more-opportunities-YYYY-MM-DD.xlsx` in `/mnt/user-data/outputs/` and ensure it includes only currently-open programs.
+Read `references/spreadsheet-schema.md` for the exact column structure and allowed values. Generate the spreadsheet using the xlsx skill — see `/mnt/skills/public/xlsx/SKILL.md` for skill mechanics. Save the file as `opportunities-newsletter-YYYY-MM-DD.xlsx` in `/mnt/user-data/outputs/` and ensure it includes only currently-open programs.
 
 ### Step 6: Output
 
-1. Use the message composition tool with `kind: email` and `subject: "More Opportunities!"` to deliver the email body.
+1. Use the message composition tool with `kind: email` and `subject: "Opportunities Newsletter"` to deliver the email body.
 2. Use `present_files` to share the spreadsheet attachment.
 3. Give Sam a short summary of:
    - What was kept from the previous newsletter

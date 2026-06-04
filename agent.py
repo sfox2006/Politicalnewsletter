@@ -1,8 +1,8 @@
 """
-More Opportunities! newsletter agent.
+Opportunities Newsletter agent.
 
 Runs on a monthly schedule. Uses a Claude agent loop to:
-  1. Search Sam's Gmail for the most recent "More Opportunities!" thread
+  1. Search Sam's Gmail for the most recent "Opportunities Newsletter" thread
   2. Verify which programs from the skill's organisation list are currently open
   3. Return structured JSON describing the next newsletter
   4. Build email body + xlsx spreadsheet
@@ -113,7 +113,7 @@ def create_gmail_draft(subject: str, body: str, attachment_path: Path | None = N
 
 def send_notification_email(draft_id: str, n_programs: int):
     body = (
-        f"Your monthly More Opportunities! draft is ready for review.\n\n"
+        f"Your monthly Opportunities Newsletter draft is ready for review.\n\n"
         f"Programs included: {n_programs}\n"
         f"Date generated: {TODAY}\n\n"
         f"Open Gmail Drafts to review, edit, and send when ready.\n"
@@ -122,7 +122,7 @@ def send_notification_email(draft_id: str, n_programs: int):
     msg = MIMEText(body, "plain", "utf-8")
     msg["to"] = SAM_EMAIL
     msg["from"] = SAM_EMAIL
-    msg["subject"] = f"[Bot] More Opportunities! draft ready — {TODAY}"
+    msg["subject"] = f"[Bot] Opportunities Newsletter draft ready — {TODAY}"
     raw = base64.urlsafe_b64encode(msg.as_bytes()).decode("utf-8")
     svc = gmail_service()
     svc.users().messages().send(userId="me", body={"raw": raw}).execute()
@@ -134,7 +134,7 @@ def web_fetch(url: str, max_chars: int = 8000) -> str:
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "Mozilla/5.0 (compatible; MoreOpportunitiesBot/1.0)"},
+            headers={"User-Agent": "Mozilla/5.0 (compatible; OpportunitiesNewsletterBot/1.0)"},
         )
         with urllib.request.urlopen(req, timeout=20) as resp:
             data = resp.read(200_000).decode("utf-8", "replace")
@@ -269,7 +269,7 @@ def load_skill() -> str:
     return "\n\n".join(parts)
 
 
-SYSTEM_PROMPT = """You are an assistant that drafts Sam Fox's monthly "More Opportunities!" newsletter.
+SYSTEM_PROMPT = """You are an assistant that drafts Sam Fox's monthly "Opportunities Newsletter".
 
 Below are the skill files that define exactly how to do this. Follow them carefully.
 
@@ -279,7 +279,7 @@ Today's date is {today}.
 
 YOUR JOB:
 
-1. Call gmail_search with query `subject:"More Opportunities"` to find what's been featured recently.
+1. Call gmail_search with query `subject:"Opportunities Newsletter"` to find what's been featured recently.
 2. Optionally call gmail_get_thread on the most recent thread to read what was in the last newsletter.
 3. For every Tier 1 program in references/organisations.md, call web_fetch on its specific application URL and decide whether it is CURRENTLY OPEN today.
 4. For any Tier 2 program you think is likely to be open this cycle, also web_fetch it.
@@ -407,7 +407,7 @@ def run_tool(name: str, args: dict) -> str:
 def run_agent() -> dict:
     client = Anthropic()
     system = SYSTEM_PROMPT.format(skill_content=load_skill(), today=TODAY)
-    messages = [{"role": "user", "content": "Please draft this month's More Opportunities! newsletter."}]
+    messages = [{"role": "user", "content": "Please draft this month's Opportunities Newsletter."}]
 
     for step in range(60):  # generous cap
         resp = client.messages.create(
@@ -456,12 +456,12 @@ def main():
     n = len(payload.get("programs", []))
     print(f"[{TODAY}] Agent returned {n} programs.")
 
-    spreadsheet_path = OUTPUT_DIR / f"more-opportunities-{TODAY}.xlsx"
+    spreadsheet_path = OUTPUT_DIR / f"opportunities-newsletter-{TODAY}.xlsx"
     build_spreadsheet(payload["programs"], spreadsheet_path)
     print(f"[{TODAY}] Spreadsheet saved: {spreadsheet_path}")
 
     body = build_email_body(payload)
-    draft_id = create_gmail_draft("More Opportunities!", body, spreadsheet_path)
+    draft_id = create_gmail_draft("Opportunities Newsletter", body, spreadsheet_path)
     print(f"[{TODAY}] Gmail draft created: {draft_id}")
 
     send_notification_email(draft_id, n)

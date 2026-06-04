@@ -1,6 +1,6 @@
 # Target Organisations
 
-The full list of organisations Sam wants featured in the "More Opportunities!" newsletter, structured in three tiers. **Tier 1** is the core monitoring loop — check every newsletter. **Tier 2** is active but lower-frequency, check every 2–3 newsletters. **Tier 3** is the Atlas Network directory used as a master source for anything not individually listed.
+The full list of organisations Sam wants featured in the "Opportunities Newsletter" newsletter, structured in three tiers. **Tier 1** is the core monitoring loop — check every newsletter. **Tier 2** is active but lower-frequency, check every 2–3 newsletters. **Tier 3** is the Atlas Network directory used as a master source for anything not individually listed.
 
 The newsletter does not include closed programs. The spreadsheet attachment also only includes currently-open programs.
 

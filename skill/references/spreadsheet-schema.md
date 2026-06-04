@@ -1,10 +1,10 @@
 # Spreadsheet Schema
 
-Every "More Opportunities!" newsletter is accompanied by an Excel spreadsheet (`.xlsx`) listing every currently-open program. The spreadsheet uses a fixed column structure so subscribers can filter on country, type, and other attributes.
+Every "Opportunities Newsletter" edition is accompanied by an Excel spreadsheet (`.xlsx`) listing every currently-open program. The spreadsheet uses a fixed column structure so subscribers can filter on country, type, and other attributes.
 
 ## File naming
 
-`more-opportunities-YYYY-MM-DD.xlsx` (use the send date, not the day of generation).
+`opportunities-newsletter-YYYY-MM-DD.xlsx` (use the send date, not the day of generation).
 
 ## Columns
 
@@ -32,7 +32,7 @@ Every "More Opportunities!" newsletter is accompanied by an Excel spreadsheet (`
 
 ## Implementation
 
-Use the xlsx skill at `/mnt/skills/public/xlsx/SKILL.md` to generate the file. Save to `/mnt/user-data/outputs/more-opportunities-YYYY-MM-DD.xlsx` and share with `present_files`.
+Use the xlsx skill at `/mnt/skills/public/xlsx/SKILL.md` to generate the file. Save to `/mnt/user-data/outputs/opportunities-newsletter-YYYY-MM-DD.xlsx` and share with `present_files`.
 
 ## Example rows
 

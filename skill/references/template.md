@@ -1,14 +1,14 @@
 # Email Template
 
-The exact format Sam uses for "More Opportunities!" newsletters.
+The exact format Sam uses for "Opportunities Newsletter" editions.
 
 ## Subject line
 
 ```
-More Opportunities!
+Opportunities Newsletter
 ```
 
-For single-program pitches (e.g. Young Voices solo, SFL solo), the subject can be more specific, e.g. "More Opportunities! — SFL Local Coordinator Program".
+For single-program pitches (e.g. Young Voices solo, SFL solo), the subject can be more specific, e.g. "Opportunities Newsletter — SFL Local Coordinator Program".
 
 ## Opening block
 
@@ -29,7 +29,7 @@ For newsletters going to a freshly expanded list (when many new readers have bee
 ```
 Hi!
 
-For those of you new to this list — welcome! "More Opportunities!" is a roundup I send out every few weeks of open internships, fellowships, conferences, student programs, and online courses at think tanks, research centres, and educational foundations that lean classical liberal, libertarian, conservative, or centre-right. The goal is simple: surface the best opportunities in the space, so you don't have to track them down yourself.
+For those of you new to this list — welcome! "Opportunities Newsletter" is a roundup I send out every few weeks of open internships, fellowships, conferences, student programs, and online courses at think tanks, research centres, and educational foundations that lean classical liberal, libertarian, conservative, or centre-right. The goal is simple: surface the best opportunities in the space, so you don't have to track them down yourself.
 
 If you'd rather not be on this list, just hit reply and let me know — no hard feelings, I'll take you off right away.
 
