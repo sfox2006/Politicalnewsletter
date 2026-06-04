@@ -17,11 +17,11 @@ For regular newsletters (most readers familiar with the list):
 ```
 Hi!
 
-Want to keep getting these? Sign up yourself or refer a friend to help us grow: https://forms.gle/CStdPYuLTdF9RdYd8
-
 Here's this week's roundup of programs currently open for students who lean classical liberal, libertarian, conservative, or centre-right. I've grouped them by country (Australia first), and within each country ordered by internship → student conference → student program/fellowship → online courses.
 
-📎 A filterable spreadsheet of every currently-open program is attached — sort by country, type, deadline, international eligibility, and more.
+There is also a filterable spreadsheet of every currently-open program is attached — sort by country, type, deadline, international eligibility, etc.
+
+Want to keep getting these? Sign up yourself or refer your friends who might find this beneficial: https://forms.gle/CStdPYuLTdF9RdYd8
 ```
 
 For newsletters going to a freshly expanded list (when many new readers have been added — Sam will flag this):

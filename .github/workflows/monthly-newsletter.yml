@@ -2,9 +2,9 @@ name: Monthly Opportunities Newsletter Draft
 
 on:
   schedule:
-    # 09:00 UTC on the 1st of every month
+    # 09:00 UTC every Monday; the first-Monday guard below skips other Mondays.
     # = 19:00 Sydney AEST in winter / 20:00 in summer
-    - cron: "0 9 1 * *"
+    - cron: "0 9 * * 1"
   workflow_dispatch:  # lets Sam trigger manually from the Actions tab
 
 jobs:
@@ -14,14 +14,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check first Monday
+        id: first_monday
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" != "schedule" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          day="$(date -u +%d)"
+          if (( 10#$day <= 7 )); then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping because this Monday is not the first Monday of the month."
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.first_monday.outputs.run == 'true'
         with:
           python-version: "3.12"
 
       - name: Install dependencies
+        if: steps.first_monday.outputs.run == 'true'
         run: pip install -r requirements.txt
 
       - name: Run agent
+        if: steps.first_monday.outputs.run == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
@@ -33,7 +53,7 @@ jobs:
         run: python agent.py
 
       - name: Upload generated spreadsheet as artifact
-        if: always()
+        if: always() && steps.first_monday.outputs.run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: newsletter-spreadsheet

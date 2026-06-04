@@ -4,7 +4,7 @@ A monthly automation that drafts Sam's "Opportunities Newsletter" student newsle
 
 ## What it does
 
-On the 1st of every month (or whenever Sam triggers it manually), a GitHub Actions job runs `agent.py`. The script:
+On the first Monday of every month (or whenever Sam triggers it manually), a GitHub Actions job runs `agent.py`. The script:
 
 1. Asks Claude (acting as an agent) to read the skill files in `skill/`, search Sam's Gmail for recent "Opportunities Newsletter" editions, and verify every Tier-1/Tier-2 program in the skill's organisation list by fetching its application page.
 2. Returns a structured payload describing only the **currently-open** programs.
@@ -63,7 +63,7 @@ In the GitHub repo: **Settings → Secrets and variables → Actions → New rep
 
 ### 5. Push and enable
 
-Push the repo to GitHub. The workflow runs automatically on the 1st of every month. You can also trigger it manually from the **Actions** tab → **Monthly Opportunities Newsletter Draft** → **Run workflow**.
+Push the repo to GitHub. The workflow runs automatically on the first Monday of every month. You can also trigger it manually from the **Actions** tab → **Monthly Opportunities Newsletter Draft** → **Run workflow**.
 
 ## Running locally
 
