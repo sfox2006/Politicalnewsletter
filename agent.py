@@ -24,6 +24,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email import encoders
+from html import escape
 from pathlib import Path
 
 from anthropic import Anthropic
@@ -95,12 +96,25 @@ def extract_body(payload) -> str:
     return "\n".join(out)
 
 
-def create_gmail_draft(subject: str, body: str, attachment_path: Path | None = None) -> str:
-    msg = MIMEMultipart()
+def create_gmail_draft(
+    subject: str,
+    body: str,
+    attachment_path: Path | None = None,
+    html_body: str | None = None,
+) -> str:
+    msg = MIMEMultipart("mixed")
     msg["to"] = SAM_EMAIL
     msg["from"] = SAM_EMAIL
     msg["subject"] = subject
-    msg.attach(MIMEText(body, "plain", "utf-8"))
+
+    if html_body:
+        alternative = MIMEMultipart("alternative")
+        alternative.attach(MIMEText(body, "plain", "utf-8"))
+        alternative.attach(MIMEText(html_body, "html", "utf-8"))
+        msg.attach(alternative)
+    else:
+        msg.attach(MIMEText(body, "plain", "utf-8"))
+
     if attachment_path and attachment_path.exists():
         part = MIMEBase("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         part.set_payload(attachment_path.read_bytes())
@@ -260,6 +274,51 @@ def format_section(country: str, items: list[dict]) -> str:
         blocks.append(p["url"])
         blocks.append("")
     return "\n".join(blocks).rstrip()
+
+
+def body_to_html(body: str) -> str:
+    parts = [
+        '<div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5; color: #202124;">'
+    ]
+    for raw_line in body.splitlines():
+        line = raw_line.strip()
+        if not line:
+            parts.append('<div style="height: 10px;"></div>')
+            continue
+        if line == "---":
+            parts.append(
+                '<div style="height: 18px;"></div>'
+                '<hr style="border: 0; border-top: 1px solid #dadce0; margin: 0 0 22px;">'
+            )
+            continue
+        if is_section_header(line):
+            parts.append(
+                f'<h2 style="font-size: 24px; line-height: 1.3; font-weight: 700; '
+                f'margin: 24px 0 10px; color: #111827;">{escape(line)}</h2>'
+            )
+            continue
+        if " — " in line and " | " in line:
+            parts.append(
+                f'<p style="font-size: 17px; font-weight: 700; margin: 14px 0 4px;">'
+                f'{escape(line)}</p>'
+            )
+            continue
+        if line.startswith("http://") or line.startswith("https://"):
+            safe_url = escape(line, quote=True)
+            parts.append(f'<p style="margin: 4px 0 12px;"><a href="{safe_url}">{escape(line)}</a></p>')
+            continue
+        parts.append(f'<p style="margin: 0 0 8px;">{escape(line)}</p>')
+    parts.append("</div>")
+    return "\n".join(parts)
+
+
+def is_section_header(line: str) -> bool:
+    text = line
+    for flag in COUNTRY_FLAGS.values():
+        if text.startswith(flag):
+            text = text[len(flag):].strip()
+            break
+    return bool(text) and text == text.upper() and any(ch.isalpha() for ch in text)
 
 
 # --- Agent loop -----------------------------------------------------------
@@ -499,7 +558,7 @@ def main():
     print(f"[{TODAY}] Spreadsheet saved: {spreadsheet_path}")
 
     body = build_email_body(payload)
-    draft_id = create_gmail_draft("Opportunities Newsletter", body, spreadsheet_path)
+    draft_id = create_gmail_draft("Opportunities Newsletter", body, spreadsheet_path, body_to_html(body))
     print(f"[{TODAY}] Gmail draft created: {draft_id}")
 
     send_notification_email(draft_id, n)
