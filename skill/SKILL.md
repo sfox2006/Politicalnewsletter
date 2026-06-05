@@ -15,14 +15,14 @@ A skill for drafting Sam Fox's recurring "Opportunities Newsletter" student news
 4. **When uncertain, be honest in the copy.** Use "Apply early," "Rolling," "Contact for current application window," or "Applications open" rather than guessing a specific deadline. Never invent a deadline.
 5. **Drop anything you cannot verify as open** by the planned send date — better a shorter, accurate newsletter than a long one with broken or closed listings.
 6. **Closed programs are not included** — neither in the email body nor in the spreadsheet. The spreadsheet is a live, currently-open snapshot only.
-7. **Avoid duplicating previous newsletters.** Search Sam's Gmail for prior threads first.
+7. **Allow repeats while programs are still open.** Search Sam's Gmail for prior threads first for context, but do not suppress a program merely because it appeared in a previous newsletter. Re-list it for however many newsletters are useful if applications are still open, the deadline is still ahead, or the opportunity remains relevant to readers.
 8. **Do not use the word "genuinely."** Sam has flagged it as overused.
 
 ## Workflow
 
 ### Step 1: Find what's been covered before
 
-Use the Gmail search tool with: `subject:"Opportunities Newsletter"` (no exclamation mark). Pull the most recent thread or two with `messageFormat: FULL_CONTENT` to see which programs were featured. Programs that were featured in the last 1–2 newsletters can be re-featured if they're still open and deadlines are imminent, but Sam generally prefers fresh content.
+Use the Gmail search tool with: `subject:"Opportunities Newsletter"` (no exclamation mark). Pull the most recent thread or two with `messageFormat: FULL_CONTENT` to see which programs were featured. Programs from previous newsletters can and should be re-featured for however many newsletters are needed if deadlines are still ahead, applications are still open, or the opportunity remains useful to readers. Do not suppress a program merely because it appeared in an earlier newsletter.
 
 ### Step 2: Build the candidate list
 
