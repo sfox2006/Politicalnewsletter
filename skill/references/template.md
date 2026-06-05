@@ -106,7 +106,8 @@ Sam
 
 ## Formatting notes
 
-- **No markdown asterisks or bold** in the body — Gmail's plain-text composer renders them as literal asterisks. Sam will manually bold/resize in the Gmail toolbar before sending.
+- The bot creates an HTML Gmail draft. Country section headings are styled at roughly 24px bold, program header lines are styled at roughly 17px bold, and sections are separated by horizontal lines with spacing. Do not add markdown asterisks or manual HTML in the generated text.
+- If composing manually in a rich-text email editor, use the same hierarchy: large bold country headings, slightly smaller bold opportunity lines, normal body text.
 - **No emojis** beyond the country flags and one section divider emoji per section.
 - **Don't use the word "genuinely"** — Sam has flagged it as overused.
 - **Don't use em-dashes excessively** — use sparingly for emphasis only.
