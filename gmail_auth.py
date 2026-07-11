@@ -33,18 +33,31 @@ def main():
         raise SystemExit("credentials.json not found. See instructions at the top of this file.")
 
     flow = InstalledAppFlow.from_client_secrets_file(str(creds_path), SCOPES)
-    creds = flow.run_local_server(port=0)
+    creds = flow.run_local_server(
+        port=0,
+        access_type="offline",
+        prompt="consent",
+        include_granted_scopes="true",
+    )
 
     with creds_path.open() as f:
         client_info = json.load(f)["installed"]
 
-    print("\n\n=== Add these as GitHub repo secrets ===")
-    print(f"GMAIL_CLIENT_ID={client_info['client_id']}")
-    print(f"GMAIL_CLIENT_SECRET={client_info['client_secret']}")
-    print(f"GMAIL_REFRESH_TOKEN={creds.refresh_token}")
-    print("\nAlso add:")
-    print("ANTHROPIC_API_KEY=<your Anthropic API key>")
-    print("SAM_EMAIL=samfoxanu@gmail.com   (or whichever Gmail you want drafts in)")
+    output = "\n".join([
+        "=== Add these as GitHub repo secrets ===",
+        f"GMAIL_CLIENT_ID={client_info['client_id']}",
+        f"GMAIL_CLIENT_SECRET={client_info['client_secret']}",
+        f"GMAIL_REFRESH_TOKEN={creds.refresh_token}",
+        "",
+        "Also add:",
+        "ANTHROPIC_API_KEY=<your Anthropic API key>",
+        "SAM_EMAIL=samfoxanu@gmail.com   (or whichever Gmail you want drafts in)",
+        "",
+    ])
+
+    Path("gmail_secrets.txt").write_text(output, encoding="utf-8")
+    print("\n\n" + output)
+    print("Saved the same values to gmail_secrets.txt in this folder.")
 
 
 if __name__ == "__main__":
